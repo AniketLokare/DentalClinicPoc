@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/api/v1/patient")
-@CrossOrigin(origins = "http://127.0.0.1:5500")
 public class PatientController
 {
     PatientService patientService;
@@ -35,14 +35,17 @@ public class PatientController
     @PostMapping
     public String createPatientDetails(@RequestBody Patient patient)
     {
+//        if (patient.getPatientAge() == null) {
+//            throw new IllegalArgumentException("Patient age cannot be null");
+//        }
         patientService.createPatientInfo(patient);
         return "patient created successfully";
     }
 
-    @PutMapping
-    public String updatePatientDetails(@RequestBody Patient patient)
+    @PutMapping("{patientId}")
+    public String updatePatientDetails(@PathVariable("patientId") Long patientId, @RequestBody Patient patient)
     {
-        patientService.updatePatientInfo(patient);
+        patientService.updatePatientInfo(patientId, patient);
         return "patient updated successfully";
     }
 

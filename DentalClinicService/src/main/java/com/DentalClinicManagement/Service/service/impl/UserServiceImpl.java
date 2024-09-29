@@ -3,6 +3,7 @@ package com.DentalClinicManagement.Service.service.impl;
 import com.DentalClinicManagement.Service.model.User;
 import com.DentalClinicManagement.Service.repository.UserRepository;
 import com.DentalClinicManagement.Service.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
 
+    @Autowired
     UserRepository userRepository;
 
     public UserServiceImpl(UserRepository userRepository) {

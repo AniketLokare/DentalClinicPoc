@@ -1,25 +1,33 @@
 package com.DentalClinicManagement.Service.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "users")
 public class User {
 
     @Id
-    private int userId;
+    @Column(name = "user_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long userId;
+
+    @Column(name = "user_name")
     private String userName;
+
+    @Column(name = "password")
     private String password;
+
+    @Column(name = "user_role")
     private String userRole;
+
+    @Column(name = "user_contact_number")
     private String userContactNumber;
 
     public User() {
     }
 
     // Constructor
-    public User(int userId, String userName, String password, String userRole, String contactNumber) {
+    public User(Long userId, String userName, String password, String userRole, String contactNumber) {
         this.userId = userId;
         this.userName = userName;
         this.password = password;
@@ -28,11 +36,11 @@ public class User {
     }
 
     // Getter and Setters
-    public int getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
